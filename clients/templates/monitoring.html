@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow">
+            <div class="card-body">
+                <h2 class="mb-4">Monitoring & Stats</h2>
+                <ul class="list-group mb-4">
+                    <li class="list-group-item">Total Clients: <b>{{ total_clients }}</b></li>
+                    <!-- Total Notes removed as per user request -->
+                    <li class="list-group-item">Total Users: <b>{{ total_users }}</b></li>
+                </ul>
+                <h5>Recent Clients</h5>
+                <ul class="list-group">
+                    {% for client in recent_clients %}
+                        <li class="list-group-item">
+                            <a href="{% url 'client_detail' client.pk %}">{{ client.name }}</a> ({{ client.company }})
+                        </li>
+                    {% empty %}
+                        <li class="list-group-item text-muted">No recent clients.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

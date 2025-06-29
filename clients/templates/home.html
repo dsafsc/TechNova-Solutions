@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="jumbotron bg-light shadow rounded p-5 mt-4">
+    <h1 class="display-4 mb-3 fw-bold text-primary">Xush kelibsiz, CloudBiz CRM!</h1>
+    <p class="lead mb-4">
+        Bu ochiq bulutli mijozlar boshqaruv tizimi. Siz mijozlarni qo‘shishingiz, tahrirlashingiz, o‘chirishingiz va ro‘yxatni ko‘rishingiz mumkin.
+        Barcha imkoniyatlar login talab qilmaydi.
+    </p>
+    <a href="{% url 'dashboard' %}" class="btn btn-primary btn-lg shadow">Dashboardga o‘tish</a>
+    <a href="{% url 'client_list' %}" class="btn btn-outline-primary btn-lg ms-2 shadow">Mijozlar ro‘yxati</a>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow">
+            <div class="card-body">
+                <h2 class="mb-4">Notes for {{ client.name }}</h2>
+                <form method="post" class="mb-4">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <textarea name="content" class="form-control" rows="3" placeholder="Add a note..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Note</button>
+                    <a href="{% url 'client_detail' client.pk %}" class="btn btn-outline-secondary ms-2">Back to Client</a>
+                </form>
+                <ul class="list-group">
+                    {% for note in notes %}
+                        <li class="list-group-item">
+                            <b>{{ note.author }}</b> <span class="text-muted">({{ note.created_at|date:"Y-m-d H:i" }})</span><br>
+                            {{ note.content }}
+                        </li>
+                    {% empty %}
+                        <li class="list-group-item text-muted">No notes yet.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
