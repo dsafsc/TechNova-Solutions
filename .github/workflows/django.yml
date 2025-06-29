@@ -1,6 +1,8 @@
 name: Django CI
 
-on: [push, pull_request]
+on:
+  - push
+  - pull_request
 
 jobs:
   build:
@@ -12,7 +14,8 @@ jobs:
           POSTGRES_DB: cloudbizcrm
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: kwasd5af
-        ports: ['5432:5432']
+        ports:
+          - '5432:5432'
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -26,15 +29,45 @@ jobs:
       DB_PORT: 5432
     steps:
       - uses: actions/checkout@v3
+        env:
+          DB_NAME: cloudbizcrm
+          DB_USER: postgres
+          DB_PASSWORD: kwasd5af
+          DB_HOST: localhost
+          DB_PORT: 5432
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
+        env:
+          DB_NAME: cloudbizcrm
+          DB_USER: postgres
+          DB_PASSWORD: kwasd5af
+          DB_HOST: localhost
+          DB_PORT: 5432
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+        env:
+          DB_NAME: cloudbizcrm
+          DB_USER: postgres
+          DB_PASSWORD: kwasd5af
+          DB_HOST: localhost
+          DB_PORT: 5432
       - name: Run migrations
         run: python manage.py migrate
+        env:
+          DB_NAME: cloudbizcrm
+          DB_USER: postgres
+          DB_PASSWORD: kwasd5af
+          DB_HOST: localhost
+          DB_PORT: 5432
       - name: Run tests
         run: python manage.py test
+        env:
+          DB_NAME: cloudbizcrm
+          DB_USER: postgres
+          DB_PASSWORD: kwasd5af
+          DB_HOST: localhost
+          DB_PORT: 5432

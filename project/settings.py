@@ -29,7 +29,7 @@ SECRET_KEY = "django-insecure-jp8xd3(5rjtcbfd-wd1%*6n4!j=3y-2moy@j=ejj^+#(p#h_&-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -85,7 +85,6 @@ DATABASES = {
         'NAME': os.environ.get('DB_NAME', 'cloudbizcrm'),
         'USER': os.environ.get('DB_USER', 'postgres'),
         'PASSWORD': os.environ.get('DB_PASSWORD', 'kwasd5af'),
-        # Docker Compose: DB_HOST=db; CI/CD: DB_HOST=localhost
         'HOST': os.environ.get('DB_HOST', 'localhost'),
         'PORT': os.environ.get('DB_PORT', '5432'),
     }
