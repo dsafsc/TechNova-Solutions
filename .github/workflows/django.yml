@@ -27,13 +27,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Dump database env
-        run: |
-          echo "DB_HOST=$DB_HOST"
-          python - <<EOF
-import os
-print("settings DB_HOST:", os.environ.get("DB_HOST"))
-EOF
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
