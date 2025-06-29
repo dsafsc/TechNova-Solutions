@@ -71,3 +71,12 @@ jobs:
           DB_PASSWORD: kwasd5af
           DB_HOST: localhost
           DB_PORT: 5432
+      - name: Deploy to EC2
+        run: |
+          ssh -o StrictHostKeyChecking=no -i ${{ secrets.EC2_SSH_KEY }} ec2-user@${{ secrets.EC2_HOST }} "cd /home/ec2-user/TechNova-Solutions && git pull && docker compose down && docker compose up -d --build"
+        env:
+          DB_NAME: cloudbizcrm
+          DB_USER: postgres
+          DB_PASSWORD: kwasd5af
+          DB_HOST: localhost
+          DB_PORT: 5432
