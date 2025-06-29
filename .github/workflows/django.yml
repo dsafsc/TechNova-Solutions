@@ -47,7 +47,7 @@ jobs:
         run: |
           echo "${{ secrets.EC2_SSH_KEY }}" > private_key.pem
           chmod 600 private_key.pem
-          ssh -o StrictHostKeyChecking=no -i private_key.pem ec2-user@${{ secrets.EC2_HOST }} "cd /home/ec2-user/TechNova-Solutions && git add . && git commit -am 'Auto-commit local changes before deploy' || true && git pull && docker compose down && docker compose up -d --build"
+          ssh -o StrictHostKeyChecking=no -i private_key.pem ec2-user@${{ secrets.EC2_HOST }} "cd /home/ec2-user/TechNova-Solutions && git config pull.rebase false && git add . && git commit -am 'Auto-commit local changes before deploy' || true && git pull --no-rebase && docker compose down && docker compose up -d --build"
         env:
           EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
           EC2_HOST: ${{ secrets.EC2_HOST }}
