@@ -24,7 +24,6 @@ jobs:
       DB_PASSWORD: kwasd5af
       DB_HOST: localhost
       DB_PORT: 5432
-
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python
