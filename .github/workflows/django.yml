@@ -19,11 +19,11 @@ jobs:
           --health-timeout 5s
           --health-retries 5
     env:
-      POSTGRES_DB: cloudbizcrm
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_HOST: localhost
-      POSTGRES_PORT: 5432
+      DB_NAME: cloudbizcrm
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_HOST: localhost
+      DB_PORT: 5432
 
     steps:
     - uses: actions/checkout@v3
@@ -37,5 +37,17 @@ jobs:
         pip install -r requirements.txt
     - name: Run migrations
       run: python manage.py migrate
+      env:
+        DB_NAME: cloudbizcrm
+        DB_USER: postgres
+        DB_PASSWORD: postgres
+        DB_HOST: localhost
+        DB_PORT: 5432
     - name: Run tests
       run: python manage.py test
+      env:
+        DB_NAME: cloudbizcrm
+        DB_USER: postgres
+        DB_PASSWORD: postgres
+        DB_HOST: localhost
+        DB_PORT: 5432
