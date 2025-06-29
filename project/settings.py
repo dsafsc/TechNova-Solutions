@@ -83,7 +83,7 @@ DATABASES = {
         'NAME': os.environ.get('DB_NAME', 'cloudbizcrm'),
         'USER': os.environ.get('DB_USER', 'postgres'),
         'PASSWORD': os.environ.get('DB_PASSWORD', 'kwasd5af'),
-        'HOST': os.environ.get('DB_HOST', 'db'),
+        'HOST': os.environ.get('DB_HOST', 'localhost'),
         'PORT': os.environ.get('DB_PORT', '5432'),
     }
 }
